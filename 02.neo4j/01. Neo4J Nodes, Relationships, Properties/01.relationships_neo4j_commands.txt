@@ -1,0 +1,91 @@
+﻿MATCH (n)-[r]->(m) RETURN n,r,m;
+
+
+MATCH (s:Student) WHERE s.city = "Chennai" RETURN s;
+
+
+MATCH (s:Student) WHERE s.city = "chennai" RETURN s;
+
+
+MATCH p=()-[:ENROLLED_IN]->() RETURN p LIMIT 25;
+
+
+MATCH (n) RETURN n;
+
+
+MATCH (s1:Student {name: "Jafer"})
+MATCH (s2:Student {name: "Wijay"})
+MATCH (s3:Student {name: "Suresh"})
+
+
+MATCH (c1:Course {course_name: "Database Systems"})
+MATCH (c2:Course {course_name: "Operating Systems"})
+
+
+CREATE 
+(s1)-[:ENROLLED_IN]->(c1),
+(s1)-[:ENROLLED_IN]->(c2),
+
+
+(s2)-[:ENROLLED_IN]->(c1),
+(s2)-[:ENROLLED_IN]->(c2),
+
+
+(s3)-[:ENROLLED_IN]->(c1);
+
+
+MATCH (s1:Student {name: "Jafer"});
+
+
+MATCH (n) RETURN n;
+
+
+MATCH (n) RETURN n;
+
+
+CREATE (:Teacher {name: "Kaarthik", experience: 10, specialization: "Networking"});
+
+
+CREATE (:Teacher {name: "Saranya", experience: 10, specialization: "database"});
+
+
+MATCH (n) RETURN n;
+
+
+CREATE (:Course {course_name: "Operating Systems", duration: 5, credits: 3});
+
+
+MATCH (n) RETURN n;
+
+
+CREATE (:Course {course_name: "Database Systems", duration: 12, credits: 4});
+
+
+MATCH (n) RETURN n;
+
+
+CREATE (:Student {name: "Suresh", age: 28, city: "Chennai", year: 4});
+
+
+MATCH (n) RETURN n;
+
+
+MATCH (n {name: "Jafer"}) RETURN n;
+
+
+MATCH (n) RETURN n;
+
+
+CREATE (:Student {name: "Wijay", age: 28, city: "Kady", year: 3});
+
+
+MATCH (n) RETURN n;
+
+
+CREATE (:Student {name: "Jafer", age: 28, city: "Coimbatore", year: 3});
+
+
+MATCH (n) return n;
+
+
+CREATE (:Student);

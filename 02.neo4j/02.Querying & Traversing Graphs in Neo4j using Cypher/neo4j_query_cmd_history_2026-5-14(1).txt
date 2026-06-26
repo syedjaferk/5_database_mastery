@@ -1,0 +1,138 @@
+﻿MATCH (n) RETURN n LIMIT 25;
+
+
+drop DATABASE system;
+
+
+show DATABASES;
+
+
+MATCH (node) WHERE elementId(node) = '4:bf766b56-50e5-4961-9eff-2fc832687168:0' RETURN node;
+
+
+MATCH (node) WHERE id(node) = '4:bf766b56-50e5-4961-9eff-2fc832687168:0' RETURN node;
+
+
+CREATE CONSTRAINT student_id_require FOR (s :Student) REQUIRE s.id IS NOT NULL;
+
+
+CREATE CONSTRAINT student_id_require FOR (s :Student) REQUIRE s.id IS NOT;
+
+
+CREATE 
+(a:Student { id: 1, name:"Alex", age:24, city: "Chennai"}) RETURN a;
+
+
+CREATE 
+(a:Student { name:"Alex", age:24, city: "Chennai"}) RETURN a;
+
+
+CREATE CONSTRAINT student_id_pk FOR (s :Student) REQUIRE s.id IS UNIQUE;
+
+
+MATCH (n)-[r]->(b) RETURN n,r,b;
+
+
+MATCH (s1 :Student {name: "Alex"})
+MATCH (s2 :Student {name: "Charlie"})
+CREATE (s1)-[:FRIEND_OF]->(s2);
+
+
+MATCH (s1 :Student {name: "Alex"});
+
+
+MATCH (n)-[r]->(b) RETURN n,r,b;
+
+
+CREATE (:Student {name: "Alex"})-[:FRIEND_OF]->(:Student {name:"Charlie"});
+
+
+MATCH (n)-[r]->(b) RETURN n,r,b;
+
+
+MATCH (:Student {name: "Alex"})-[r :FRIEND_OF]->(:Student {name:"Charlie"}) DELETE r;
+
+
+MATCH (n)-[r]->(b) RETURN n,r,b;
+
+
+MATCH (s :Student {city: "Chennai"}) REMOVE s.phone RETURN s;
+
+
+MATCH (s :Student {city: "Chennai"}) SET s.phone = 9176409201 RETURN s;
+
+
+MATCH (s :Student {city: "Chennai"}) SET s.age = 23 RETURN s;
+
+
+MATCH (s :Student {name: "David"}) SET s.age = 34 RETURN s;
+
+
+MATCH (s:Student {name:"Alex"})-[:FRIEND_OF]->()-[:FRIEND_OF]->(f:Student) RETURN DISTINCT f.name;
+
+
+MATCH (n)-[r]->(b) RETURN n,r,b;
+
+
+MATCH (s:Student {name:"Alex"})-[:FRIEND_OF]->()-[:FRIEND_OF]->(f:Student) RETURN f.name;
+
+
+MATCH (s:Student {name:"Alex"})-[:ENROLLED_IN]->(c:Course) RETURN c.name;
+
+
+MATCH (s:Student {name:"Alex"})-[:ENROLLED_IN]->(c:Course) RETURN c;
+
+
+MATCH (s:Student {name:"Alex"})-[:ENROLLED_IN]->(c:Course) RETURN c.name;
+
+
+MATCH (s:Student)-[:ENROLLED_IN]->(c:Course) RETURN s;
+
+
+MATCH (s:Student {city:"Chennai"}) RETURN s;
+
+
+MATCH (s:Student {name:"Alex"}) RETURN s;
+
+
+MATCH (s:Student) RETURN s;
+
+
+MATCH (n)-[r]->(b) RETURN n,r,b;
+
+
+MATCH (n) RETURN n LIMIT 25;
+
+
+CREATE 
+(a:Student { id:1, name:"Alex", age:24, city: "Chennai"}),
+(b:Student { id:2, name:"Bob", age:22, city: "Coimbatore"}),
+(c:Student { id:3, name:"Charlie", age:27, city: "Madurai"}),
+(d:Student { id:4, name:"David", age:25, city: "Chennai"}),
+
+
+(c1:Course {name:"Database", credits:4}),
+(c2:Course {name:"TQM", credits:1}),
+(c3:Course {name: "DSA", credits:5})
+
+
+CREATE
+
+
+
+
+(a)-[:ENROLLED_IN {marks:88}]->(c1),
+(b)-[:ENROLLED_IN {marks:91}]->(c2),
+(c)-[:ENROLLED_IN {marks:88}]->(c1),
+(c)-[:ENROLLED_IN {marks:91}]->(c2),
+(a)-[:ENROLLED_IN {marks:91}]->(c2),
+(d)-[:ENROLLED_IN {marks:87}]->(c3),
+
+
+(a)-[:FRIEND_OF]->(b),
+(b)-[:FRIEND_OF]->(d),
+(a)-[:FRIEND_OF]->(c),
+(c)-[:FRIEND_OF]->(d);
+
+
+MATCH (n) DETACH DELETE n;

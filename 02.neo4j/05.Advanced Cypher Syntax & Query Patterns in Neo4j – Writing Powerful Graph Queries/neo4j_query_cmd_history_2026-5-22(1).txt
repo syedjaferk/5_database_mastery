@@ -1,0 +1,456 @@
+﻿MATCH (n) RETURN n;
+
+
+MATCH (n RETURN n;
+
+
+MATCH (n)-[r]->(q) RETURN n,r,q;
+
+
+MATCH (m:Movie) WITH COLLECT(m.title) as all_movies 
+
+
+OPTIONAL MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+
+
+WITH u, all_movies, collect(DISTINCT um.title) AS user_movies 
+
+
+WITH u, [x IN all_movies WHERE NOT x in user_movies] AS suggested_movies
+
+
+RETURN u, suggested_movies;
+
+
+MATCH (m:Movie) WITH COLLECT(m.title) as all_movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+
+
+WITH u, all_movies, collect(DISTINCT um.title) AS user_movies 
+
+
+WITH u, [x IN all_movies WHERE NOT x in user_movies] AS suggested_movies
+
+
+RETURN u, suggested_movies;
+
+
+MATCH (m:Movie) WITH COLLECT(m.title) as all_movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+
+
+WITH u, all_movies, collect(DISTINCT um.title) AS user_movies 
+
+
+WITH u, [x IN all_movies WHERE NOT x in user_movies] AS suggested_movies
+
+
+RETURN u, suggested_movies;
+
+
+CREATE
+(u1:User {
+    id: 10,
+    name: "Kaarthik",
+    age: 25,
+    city: "Chennai"
+});
+
+
+MATCH (m:Movie) WITH COLLECT(m.title) as all_movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+
+
+WITH u, all_movies, collect(DISTINCT um.title) AS user_movies 
+
+
+WITH u, [x IN all_movies WHERE NOT x in user_movies] AS suggested_movies
+
+
+RETURN u, suggested_movies;
+
+
+MATCH (m:Movie) WITH COLLECT(m.title) as all_movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+
+
+WITH u, all_movies, collect(DISTINCT um.title) AS user_movies 
+
+
+WITH u, [x IN all_movies WHERE NOT x in user_movies] AS suggested_movies
+
+
+
+
+RETURN u, suggested_movies;
+
+
+MATCH (m:Movie) WITH COLLECT(DISTINCT m.title) as all_movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+
+
+WITH u, all_movies, collect(DISTINCT um.title) AS user_movies 
+
+
+WITH u, [x IN all_movies WHERE NOT x in user_movies] AS suggested_movies
+
+
+
+
+RETURN u, suggested_movies;
+
+
+MATCH (n)-[r]->(q) RETURN n,r,q;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WITH COLLECT(DISTINCT m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, movies, collect(DISTINCT um.title) AS user_movies 
+
+
+WITH u, [x IN movies WHERE NOT x in user_movies] AS suggested_movies
+
+
+
+
+
+
+RETURN u, suggested_movies;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WITH COLLECT(DISTINCT m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, movies, collect(DISTINCT um.title) AS user_movies 
+
+
+
+
+
+
+RETURN u, user_movies, movies;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WITH COLLECT(m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, movies, collect(DISTINCT um.title) AS user_movies 
+
+
+
+
+
+
+RETURN u, user_movies, movies;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WITH COLLECT(m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, movies, collect(um.title) AS user_movies WHERE NOT user_movies IN movies
+
+
+
+
+
+
+RETURN u, user_movies, movies;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WITH COLLECT(m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, movies, collect(um.title) AS user_movies
+
+
+RETURN u, user_movies, movies;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WITH COLLECT(m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, collect(um.title) AS user_movies
+
+
+RETURN u, user_movies, movies;
+
+
+MATCH (m:Movie) WITH COLLECT(m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, collect(um.title) AS user_movies
+
+
+RETURN u, user_movies, movies;
+
+
+MATCH (m:Movie) WITH COLLECT(m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, collect(um.title) AS user_movies
+
+
+RETURN u, user_movies;
+
+
+MATCH (m:Movie) WITH COLLECT(m.title) as movies 
+
+
+MATCH (u:User)-[w:WATCHED]->(um:Movie) 
+WITH u, collect(um.title) AS user_movies
+
+
+WHERE NONE(movie in user_movies WHERE NOT movie IN movies) AS other_movies
+
+
+RETURN u.name, other_movies;
+
+
+MATCH (m:Movie) RETURN COLLECT(m.name);
+
+
+MATCH (m:Movie) RETURN COLLECT(m);
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie);
+
+
+MATCH (n)-[r]->(q) RETURN n,r,q;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) 
+
+
+WHERE NOT EXISTS {
+MATCH (u2:User)-[:WATCHED]->(m) WHERE u2 <> u }
+
+
+
+
+RETURN u.name, m.title
+;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WHERE NOT EXISTS (
+
+
+MATCH (u2:User)-[:WATCHED]->(m) WHERE u2 <> u )
+
+
+RETURN u.name, m.title
+;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WHERE NOT EXISTS ();
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) WHERE m is NULL RETURN u.name;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE  m.genre <> all(['Sci-Fi', 'Drama']) RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE  m.genre <> all(x in ['Sci-Fi', 'Drama']) RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE  m.genre <> all(['Sci-Fi', 'Drama']) RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE  m.genre <> all(["Sci-Fi", "Drama"]) RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE  m.genre <> ALL(["Sci-Fi", "Drama"]) RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE NOT m.genre IN ["Sci-Fi", "Drama"] RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE m.genre <> ALL(["Sci-Fi", "Drama"]) RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE m.genre <> ["Sci-Fi", "Drama"] RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE m.genre NOT IN ["Sci-Fi", "Drama"] RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE m.genre IN ["Sci-Fi", "Drama"] RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie)  RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE m.genre IN ["Sci-Fi", "Drama"] RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE w.rating >= 9 AND u.name STARTS WITH "A" RETURN u.name, m.title;
+
+
+MATCH (u:User)-[w:WATCHED]->(m:Movie) WHERE w.rating >= 9 RETURN u.name, m.title;
+
+
+MATCH (u:User) WHERE u.city = "Madurai" AND u.age > 25 RETURN u;
+
+
+MATCH (u:User) WHERE u.city = "Chennai" RETURN u;
+
+
+MATCH (u1:User)-[:FRIEND]-(u2:User) RETURN u1.name, COLLECT(u2.name);
+
+
+MATCH (u1:User)-[:FRIEND]-(u2:User) RETURN u1.name, u2.name;
+
+
+MATCH (m:Movie)<-[:WATCHED]-(u:User) RETURN u.name, COLLECT(m.title) AS watched_movies;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) RETURN u.name, COLLECT(m.title) AS watched_movies;
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) RETURN u.name, COLLECT(m.title);
+
+
+MATCH (u:User)-[:WATCHED]->(m:Movie) RETURN u.name, m.title;
+
+
+MATCH (u:User) WHERE u.age > 24 RETURN u.name, u.age, u.city ORDER BY u.age DESC;
+
+
+MATCH (u:User) WHERE u.age > 24 RETURN u.name, u.city ORDER BY u.age DESC;
+
+
+MATCH (n)-[r]->(q) RETURN n,r,q;
+
+
+MATCH (n) RETURN n;
+
+
+CREATE
+(u1:User {
+    id: 1,
+    name: "Alice",
+    age: 25,
+    city: "Chennai"
+}),
+(u2:User {
+    id: 2,
+    name: "Bob",
+    age: 30,
+    city: "Madurai"
+}),
+(u3:User {
+    id: 3,
+    name: "Charlie",
+    age: 28,
+    city: "Coimbatore"
+}),
+(u4:User {
+    id: 4,
+    name: "David",
+    age: 35,
+    city: "Bangalore"
+}),
+(u5:User {
+    id: 5,
+    name: "Eva",
+    age: 22,
+    city: "Chennai"
+});
+
+
+
+
+CREATE
+(m1:Movie {
+    id: 101,
+    title: "Interstellar",
+    genre: "Sci-Fi",
+    rating: 9
+}),
+(m2:Movie {
+    id: 102,
+    title: "Inception",
+    genre: "Sci-Fi",
+    rating: 8
+}),
+(m3:Movie {
+    id: 103,
+    title: "Titanic",
+    genre: "Romance",
+    rating: 7
+}),
+(m4:Movie {
+    id: 104,
+    title: "Joker",
+    genre: "Drama",
+    rating: 8
+});
+
+
+MATCH
+(a:User {name: "Alice"}),
+(b:User {name: "Bob"}),
+(c:User {name: "Charlie"}),
+(d:User {name: "David"}),
+(e:User {name: "Eva"}),
+
+
+(i:Movie {title: "Interstellar"}),
+(n:Movie {title: "Inception"}),
+(t:Movie {title: "Titanic"}),
+(j:Movie {title: "Joker"})
+
+
+CREATE
+(a)-[:FRIEND]->(b),
+(a)-[:FRIEND]->(c),
+(b)-[:FRIEND]->(d),
+(c)-[:FRIEND]->(e),
+
+
+(a)-[:WATCHED {rating: 10}]->(i),
+(a)-[:WATCHED {rating: 9}]->(n),
+
+
+(b)-[:WATCHED {rating: 8}]->(n),
+(b)-[:WATCHED {rating: 6}]->(t),
+
+
+(c)-[:WATCHED {rating: 7}]->(j),
+
+
+(d)-[:WATCHED {rating: 9}]->(i),
+
+
+(e)-[:WATCHED {rating: 8}]->(t);
+
+
+MATCH (n) RETURN n;
+
+
+MATCH (n) DETACH DELETE n;
+
+
+MATCH (n) RETURN n;
+
+
+MATCH (n:Crime) RETURN n LIMIT 25;
