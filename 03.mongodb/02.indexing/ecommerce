@@ -1,0 +1,72 @@
+db.orders.insertMany([
+{
+    customer_id: 101,
+    customer_name: "Alice",
+    city: "Chennai",
+    category: "Electronics",
+    product: "Laptop",
+    price: 75000,
+    quantity: 1,
+    status: "Delivered",
+    order_date: ISODate("2026-01-10"),
+    tags:["gaming","ssd"],
+    expiry: ISODate("2027-01-10"),
+    description:"Gaming laptop with RTX graphics"
+},
+{
+    customer_id:102,
+    customer_name:"Bob",
+    city:"Bangalore",
+    category:"Electronics",
+    product:"Mouse",
+    price:1200,
+    quantity:2,
+    status:"Pending",
+    order_date:ISODate("2026-02-12"),
+    tags:["wireless"],
+    expiry:ISODate("2027-02-12"),
+    description:"Wireless optical mouse"
+},
+{
+    customer_id:103,
+    customer_name:"Charlie",
+    city:"Chennai",
+    category:"Books",
+    product:"MongoDB Guide",
+    price:900,
+    quantity:1,
+    status:"Delivered",
+    order_date:ISODate("2026-02-15"),
+    tags:["database","mongodb"],
+    expiry:ISODate("2028-02-15"),
+    description:"Complete MongoDB learning book"
+},
+{
+    customer_id:104,
+    customer_name:"David",
+    city:"Hyderabad",
+    category:"Electronics",
+    product:"Keyboard",
+    price:2500,
+    quantity:1,
+    status:"Cancelled",
+    order_date:ISODate("2026-03-05"),
+    tags:["mechanical"],
+    expiry:ISODate("2027-03-05"),
+    description:"Mechanical RGB keyboard"
+},
+{
+    customer_id:105,
+    customer_name:"Emma",
+    city:"Mumbai",
+    category:"Clothing",
+    product:"Jacket",
+    price:3500,
+    quantity:2,
+    status:"Delivered",
+    order_date:ISODate("2026-03-20"),
+    tags:["winter","fashion"],
+    expiry:ISODate("2028-03-20"),
+    description:"Winter jacket"
+}
+])
